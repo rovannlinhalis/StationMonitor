@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-StationMonitor-9611CE1A-2997-4AAA-9550-1E74B1201007</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Estacoes\**" />
+    <Compile Remove="Views\Grupos\**" />
+    <Content Remove="Views\Estacoes\**" />
+    <Content Remove="Views\Grupos\**" />
+    <EmbeddedResource Remove="Views\Estacoes\**" />
+    <EmbeddedResource Remove="Views\Grupos\**" />
+    <None Remove="Views\Estacoes\**" />
+    <None Remove="Views\Grupos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\EstacoesController_old.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ChartJsGenerator" Version="2.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StationInterface\StationInterface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_SBAdminScriptsPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

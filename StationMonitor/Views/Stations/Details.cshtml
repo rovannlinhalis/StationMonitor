@@ -1,0 +1,217 @@
+﻿@model StationMonitor.Entidades.Station
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container-fluid">
+    <h4>Station</h4>
+    <hr />
+    <div class="row">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cpu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cpu)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MotherBoard)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MotherBoard)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Memory)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MemoryString)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OS)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OS) @Html.DisplayFor(model => model.OSArchitecture)
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <div id="exTab1" class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#disk" data-toggle="tab">Disk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#connections" data-toggle="tab">Connections</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#softwares" data-toggle="tab">Softwares</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#events" data-toggle="tab">Events</a>
+                </li>
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="disk">
+                    <h3>Discos</h3>
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().Letter)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().Label)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().Type)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().Format)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().FreeSize)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Drivers.FirstOrDefault().TotalSize)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Drivers.OrderBy(x => x.Letter))
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Letter)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Label)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Format)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FreeSize)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalSizeMB)  MB
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="connections">
+                    <h3>Conexões</h3>
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Connections.FirstOrDefault().Sequence)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Connections.FirstOrDefault().Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Connections.FirstOrDefault().Speed)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Connections.FirstOrDefault().Status)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Connections.OrderBy(x => x.Sequence))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sequence)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Speed)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="softwares">
+                    <h3>Softwares</h3>
+                </div>
+                <div class="tab-pane" id="events">
+                    <h3>Eventos</h3>
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastEvent.Sequence)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastEvent.Date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastEvent.OSUserName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastEvent.Process)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastEvent.Title)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Events.OrderBy(x=>x.Sequence))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sequence)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OSUserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Process)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <canvas id="station_chart">
+
+            </canvas>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
